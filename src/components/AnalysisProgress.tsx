@@ -59,13 +59,13 @@ const AnalysisProgress: React.FC<AnalysisProgressProps> = ({ isAnalyzing }) => {
   return (
     <div className="w-full max-w-md space-y-4">
       <div className="text-center">
-        <h3 className="text-lg font-semibold text-gray-800">Analyzing Transcript</h3>
-        <p className="text-sm text-gray-600 mt-1">{currentStep}</p>
+        <h3 className="text-lg font-semibold text-foreground">Analyzing Transcript</h3>
+        <p className="text-sm text-muted-foreground mt-1">{currentStep}</p>
       </div>
       
       <div className="space-y-2">
         <Progress value={progress} className="h-3" />
-        <div className="flex justify-between text-xs text-gray-500">
+        <div className="flex justify-between text-xs text-muted-foreground">
           <span>0%</span>
           <span>{Math.round(progress)}%</span>
           <span>100%</span>
@@ -73,9 +73,9 @@ const AnalysisProgress: React.FC<AnalysisProgressProps> = ({ isAnalyzing }) => {
       </div>
       
       <div className="flex items-center justify-center space-x-1">
-        <div className="w-2 h-2 bg-blue-600 rounded-full animate-bounce"></div>
-        <div className="w-2 h-2 bg-blue-600 rounded-full animate-bounce" style={{ animationDelay: '0.1s' }}></div>
-        <div className="w-2 h-2 bg-blue-600 rounded-full animate-bounce" style={{ animationDelay: '0.2s' }}></div>
+        <div className="w-2 h-2 bg-primary rounded-full animate-bounce"></div>
+        <div className="w-2 h-2 bg-primary rounded-full animate-bounce" style={{ animationDelay: '0.1s' }}></div>
+        <div className="w-2 h-2 bg-primary rounded-full animate-bounce" style={{ animationDelay: '0.2s' }}></div>
       </div>
     </div>
   );

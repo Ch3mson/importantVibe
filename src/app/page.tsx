@@ -42,24 +42,44 @@ export default function Home() {
   const currentAnalysisSection = analysis ? analysis[currentPage - 1] : null;
 
   return (
-    <section className="w-full flex flex-col items-center gap-8">
-      <TranscriptInput onAnalyze={handleAnalyze} isLoading={isLoading} />
+    <div className="container mx-auto px-4 py-8">
+      <div className="max-w-6xl mx-auto">
+        <div className="text-center mb-8">
+          <h1 className="text-4xl font-bold tracking-tight mb-4">
+            Interview Transcript Analyzer
+          </h1>
+          <p className="text-lg text-muted-foreground">
+            AI-powered analysis of technical interviews with detailed insights and feedback
+          </p>
+        </div>
 
-      <AnalysisProgress isAnalyzing={isLoading} />
-      {error && <p className="text-red-500">{error}</p>}
-      
-      {analysis && currentAnalysisSection && (
-        <>
-          <AnalysisDisplay analysis={currentAnalysisSection} />
-          <div className="w-full max-w-4xl">
-            <AnalysisPagination
-              currentPage={currentPage}
-              totalPages={analysis.length}
-              onPageChange={setCurrentPage}
-            />
-          </div>
-        </>
-      )}
-    </section>
+        <section className="w-full flex flex-col items-center gap-8">
+          <TranscriptInput onAnalyze={handleAnalyze} isLoading={isLoading} />
+
+          <AnalysisProgress isAnalyzing={isLoading} />
+          {error && (
+            <div className="w-full max-w-4xl">
+              <div className="rounded-lg border border-destructive/20 bg-destructive/10 p-4">
+                <p className="text-destructive font-medium">Error analyzing transcript:</p>
+                <p className="text-destructive/80 mt-1">{error}</p>
+              </div>
+            </div>
+          )}
+          
+          {analysis && currentAnalysisSection && (
+            <>
+              <AnalysisDisplay analysis={currentAnalysisSection} />
+              <div className="w-full max-w-4xl">
+                <AnalysisPagination
+                  currentPage={currentPage}
+                  totalPages={analysis.length}
+                  onPageChange={setCurrentPage}
+                />
+              </div>
+            </>
+          )}
+        </section>
+      </div>
+    </div>
   );
 }

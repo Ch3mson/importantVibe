@@ -30,14 +30,14 @@ const AnalysisDisplay: React.FC<AnalysisDisplayProps> = ({ analysis }) => {
       <CardContent className="grid gap-6">
         <section>
           <h3 className="font-semibold text-lg mb-2">Summary</h3>
-          <p className="text-gray-600">{analysis.summary}</p>
+          <p className="text-muted-foreground">{analysis.summary}</p>
         </section>
         
         <section>
           <h3 className="font-semibold text-lg mb-2">Highlights</h3>
           <ul className="list-disc list-inside space-y-1">
             {analysis.highlights.map((highlight, index) => (
-              <li key={index} className="text-green-700">{highlight}</li>
+              <li key={index} className="text-success">{highlight}</li>
             ))}
           </ul>
         </section>
@@ -46,7 +46,7 @@ const AnalysisDisplay: React.FC<AnalysisDisplayProps> = ({ analysis }) => {
           <h3 className="font-semibold text-lg mb-2">Lowlights</h3>
           <ul className="list-disc list-inside space-y-1">
             {analysis.lowlights.map((lowlight, index) => (
-              <li key={index} className="text-red-700">{lowlight}</li>
+              <li key={index} className="text-destructive">{lowlight}</li>
             ))}
           </ul>
         </section>

@@ -1,7 +1,6 @@
 'use client';
 
 import React from 'react';
-import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
 import { Button } from '@/components/ui/button';
 
@@ -19,9 +18,6 @@ const TranscriptInput: React.FC<TranscriptInputProps> = ({ onAnalyze, isLoading 
 
   return (
     <div className="grid w-full gap-4">
-      <Label htmlFor="transcript" className="text-lg">
-        Paste your interview transcript (JSON)
-      </Label>
       <Textarea
         id="transcript"
         placeholder="Paste your JSON transcript here..."
