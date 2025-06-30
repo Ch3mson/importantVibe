@@ -1,0 +1,390 @@
+{
+  "master": {
+    "tasks": [
+      {
+        "id": 1,
+        "title": "Configure shadcn/ui and Tailwind CSS",
+        "description": "Integrate shadcn/ui component library and Tailwind CSS for styling into the existing Next.js project.",
+        "details": "1. Install and initialize Tailwind CSS according to the official Next.js documentation.\\n2. Install and initialize shadcn/ui, which uses Tailwind CSS.\\n3. Verify the project's `tsconfig.json` and folder structure are compatible with shadcn/ui's requirements for aliased paths (e.g., `@/components`).\\n4. Create a basic theme configuration for shadcn/ui that aligns with the application's design goals.\\n5. Test the setup by adding a simple shadcn/ui component (like a Button) to the main page to ensure everything is working.",
+        "testStrategy": "Verify that the project builds without errors. Create a simple test page with a shadcn/ui button to ensure it renders correctly and that Tailwind CSS classes are properly applied.",
+        "priority": "high",
+        "dependencies": [],
+        "status": "done",
+        "subtasks": []
+      },
+      {
+        "id": 2,
+        "title": "Create Main Layout Components",
+        "description": "Develop the main layout components including Header, Footer, and Main content areas as specified in the PRD.",
+        "details": "1. Create a components folder with layout subfolder\n2. Implement Header component with application name 'Vibe' and any necessary navigation\n3. Implement Footer component with appropriate copyright information\n4. Create a Main content container component that will hold the transcript input and analysis display\n5. Ensure the layout is responsive and follows modern web design practices\n6. Use shadcn/ui components where appropriate\n7. Implement a container to maintain consistent width and padding across the application",
+        "testStrategy": "Verify that the layout renders correctly across different screen sizes. Check that the components are properly positioned and styled according to the design requirements. Ensure accessibility standards are met.",
+        "priority": "high",
+        "dependencies": [
+          1
+        ],
+        "status": "done",
+        "subtasks": []
+      },
+      {
+        "id": 3,
+        "title": "Implement TranscriptInput Component",
+        "description": "Create a textarea component for users to paste JSON interview transcripts and an 'Analyze Transcript' button to submit the data.",
+        "details": "1. Create a new component called TranscriptInput\n2. Implement a large textarea using shadcn/ui components that allows for pasting JSON content\n3. Add validation to ensure the pasted content is valid JSON\n4. Create an 'Analyze Transcript' button that is disabled until valid JSON is detected\n5. Implement loading state for the button when analysis is in progress\n6. Add error handling for invalid JSON input with appropriate user feedback\n7. Include placeholder text explaining the expected format\n8. Consider adding a sample/demo button that populates the textarea with example data",
+        "testStrategy": "Test the component with valid and invalid JSON inputs. Verify that the button is disabled when input is invalid or empty. Check that the loading state is correctly displayed when the analysis is in progress. Ensure the component is accessible.",
+        "priority": "high",
+        "dependencies": [
+          2
+        ],
+        "status": "done",
+        "subtasks": []
+      },
+      {
+        "id": 4,
+        "title": "Develop Pagination Component",
+        "description": "Create a pagination component that allows users to navigate through different sections of the interview analysis.",
+        "details": "1. Create a reusable Pagination component\n2. Implement 'Next' and 'Previous' buttons for navigation\n3. Display current page number and total pages\n4. Add logic to handle page changes\n5. Ensure the component is accessible with proper ARIA attributes\n6. Style the component using shadcn/ui and Tailwind CSS\n7. Add keyboard navigation support (arrow keys)\n8. Implement disabled states for buttons when at the first or last page",
+        "testStrategy": "Test navigation between pages using both buttons and keyboard shortcuts. Verify that the current page indicator updates correctly. Check that buttons are properly disabled at boundaries. Ensure the component meets accessibility standards.",
+        "priority": "medium",
+        "dependencies": [
+          2
+        ],
+        "status": "done",
+        "subtasks": []
+      },
+      {
+        "id": 5,
+        "title": "Implement AnalysisDisplay Component",
+        "description": "Create a component to display the analysis results including summary, highlights, lowlights, and key named entities for each section of the interview.",
+        "details": "1. Create an AnalysisDisplay component that accepts analysis data as props\n2. Structure the component to display four main sections: Summary, Highlights, Lowlights, and Key Named Entities\n3. Use appropriate shadcn/ui components like cards, lists, and typography elements\n4. Implement a side panel to show the raw dialogue for the corresponding section\n5. Ensure the layout is responsive and maintains readability on different screen sizes\n6. Add visual indicators to distinguish between different types of information\n7. Implement empty states for when no analysis is available\n8. Consider adding copy-to-clipboard functionality for each section",
+        "testStrategy": "Test the component with various mock data structures to ensure it handles all expected data formats. Verify that all sections render correctly and are properly styled. Check responsive behavior across different screen sizes. Ensure accessibility standards are met.",
+        "priority": "high",
+        "dependencies": [
+          2,
+          4
+        ],
+        "status": "done",
+        "subtasks": [
+          {
+            "id": 1,
+            "title": "Create basic component structure and layout",
+            "description": "Set up the foundational structure of the AnalysisDisplay component with proper file organization and layout containers.",
+            "dependencies": [],
+            "details": "Create the AnalysisDisplay component file with proper imports. Implement the main container with CSS Grid or Flexbox for layout. Define the overall component structure including header, main content area, and any navigation elements. Set up prop types and default props for data handling.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 2,
+            "title": "Implement individual analysis section components",
+            "description": "Create the various section components that will display different types of analysis data within the main component.",
+            "dependencies": [
+              1
+            ],
+            "details": "Develop reusable section components for different analysis types (e.g., sentiment analysis, key metrics, trend data). Each section should have consistent styling but accommodate different data formats. Include section headers, content areas, and any interactive elements. Ensure each section can be conditionally rendered based on available data.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 3,
+            "title": "Implement data visualization components",
+            "description": "Create chart and graph components to visually represent analysis data within the various sections.",
+            "dependencies": [
+              2
+            ],
+            "details": "Select and implement appropriate visualization libraries (e.g., Chart.js, D3.js). Create wrapper components for different chart types (bar charts, line graphs, pie charts, etc.). Ensure visualizations are interactive with tooltips and responsive to different screen sizes. Implement color schemes and styling consistent with the application design.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 4,
+            "title": "Develop loading and empty states",
+            "description": "Implement appropriate UI components and animations for loading, empty, and error states.",
+            "dependencies": [
+              1
+            ],
+            "details": "Create loading indicators/skeletons for the overall component and individual sections. Design empty state messaging and visuals for when no data is available. Implement error handling with user-friendly error messages. Ensure smooth transitions between different states (loading → data or loading → error).",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 5,
+            "title": "Implement responsive design",
+            "description": "Ensure the component displays correctly across all device sizes and screen orientations.",
+            "dependencies": [
+              1,
+              2,
+              3
+            ],
+            "details": "Use CSS media queries to adjust layouts for different screen sizes. Implement responsive typography and spacing. Create alternative layouts for mobile devices (e.g., stacked vs. grid). Test and optimize touch interactions for mobile users. Ensure data visualizations resize appropriately on different devices.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 6,
+            "title": "Add interactivity and navigation features",
+            "description": "Implement interactive elements to enhance user experience when exploring analysis data.",
+            "dependencies": [
+              2,
+              3,
+              5
+            ],
+            "details": "Add filtering and sorting options for analysis data. Implement collapsible/expandable sections for better space management. Create tab or accordion navigation for switching between different analysis views. Add export or sharing functionality for analysis results. Ensure all interactive elements have appropriate keyboard accessibility and screen reader support.",
+            "status": "pending",
+            "testStrategy": ""
+          }
+        ]
+      },
+      {
+        "id": 6,
+        "title": "Implement Client-Side State Management",
+        "description": "Set up state management to handle the transcript input, loading status, analysis results, and current page index.",
+        "details": "1. Create a state management solution using React's built-in hooks (useState, useReducer) or Context API\n2. Define the main state structure to include:\n   - transcriptInput (string)\n   - isLoading (boolean)\n   - analysisResults (object with structured data)\n   - currentPageIndex (number)\n   - error (string or null)\n3. Implement actions/reducers for updating each part of the state\n4. Create a custom hook (e.g., useTranscriptAnalysis) to encapsulate the state logic\n5. Add functions to handle state transitions (e.g., setTranscript, startAnalysis, setAnalysisResults)\n6. Implement pagination logic to navigate through analysis sections\n7. Add error handling for failed API requests",
+        "testStrategy": "Create unit tests for state transitions and reducers. Verify that state updates correctly in response to user actions. Test error handling by simulating API failures. Ensure that pagination state correctly updates when navigating between sections.",
+        "priority": "high",
+        "dependencies": [
+          3,
+          5
+        ],
+        "status": "done",
+        "subtasks": [
+          {
+            "id": 1,
+            "title": "Define State Structure",
+            "description": "Define the global state structure including all required data models, loading states, error states, and pagination information.",
+            "dependencies": [],
+            "details": "Create a comprehensive state structure that includes: user data, authentication status, content items, loading indicators for async operations, error messages, pagination metadata, filter/sort preferences, and any other application-specific state. Document the structure with TypeScript interfaces.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 2,
+            "title": "Implement Action Creators",
+            "description": "Create action creators for all state mutations including async operations.",
+            "dependencies": [
+              1
+            ],
+            "details": "Develop typed action creators for all state changes: data fetching (request/success/failure patterns), user interactions, form submissions, authentication flows, etc. For async actions, implement appropriate patterns (thunks, sagas, or similar based on the chosen state management library).",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 3,
+            "title": "Develop Reducer Functions",
+            "description": "Implement reducer functions to handle state transitions based on dispatched actions.",
+            "dependencies": [
+              1,
+              2
+            ],
+            "details": "Create pure reducer functions that handle each action type and produce the next state. Implement proper error handling, loading state management, and data normalization if needed. Split reducers logically by domain and combine them into a root reducer.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 4,
+            "title": "Create Custom Hooks for State Access",
+            "description": "Develop custom hooks that provide components with access to specific slices of state and relevant actions.",
+            "dependencies": [
+              2,
+              3
+            ],
+            "details": "Create hooks like useAuth(), useContent(), etc. that encapsulate state selection logic and dispatch functions. Implement memoization to prevent unnecessary re-renders. Include TypeScript typing for all hooks.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 5,
+            "title": "Set Up Store Configuration",
+            "description": "Configure the state store with middleware, dev tools, and persistence if needed.",
+            "dependencies": [
+              3
+            ],
+            "details": "Set up the store with appropriate middleware (for async actions, logging, etc.). Configure Redux DevTools or similar debugging tools. Implement state persistence with localStorage/sessionStorage if required. Set up store provider at the application root.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 6,
+            "title": "Integrate State with Components",
+            "description": "Connect components to the state management system using the custom hooks.",
+            "dependencies": [
+              4,
+              5
+            ],
+            "details": "Refactor components to use the custom hooks for state access. Ensure components only subscribe to the state they need. Implement proper loading and error states in UI components. Test component re-rendering performance.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 7,
+            "title": "Implement State Testing",
+            "description": "Create comprehensive tests for actions, reducers, selectors, and integration with components.",
+            "dependencies": [
+              2,
+              3,
+              4,
+              6
+            ],
+            "details": "Write unit tests for action creators, reducers, and selectors. Create integration tests for custom hooks. Test async flows and error handling. Verify state transitions work as expected across the application.",
+            "status": "pending",
+            "testStrategy": ""
+          }
+        ]
+      },
+      {
+        "id": 7,
+        "title": "Create Mock API Route",
+        "description": "Implement a Next.js API route at /api/analyze that initially returns hardcoded mock analysis data to test the frontend integration.",
+        "details": "1. Create a new API route at pages/api/analyze.ts\n2. Define the request and response types using TypeScript interfaces\n3. Implement a POST endpoint that accepts JSON transcript data\n4. Create a mock response that matches the expected structure from the LLM:\n   ```typescript\n   interface AnalysisSection {\n     sectionName: string;\n     summary: string;\n     highlights: string[];\n     lowlights: string[];\n     keyNamedEntities: string[];\n     rawDialogue: string;\n   }\n   ```\n5. Add basic validation for the incoming request\n6. Implement error handling for malformed requests\n7. Add artificial delay to simulate real API latency\n8. Include comments explaining how this will be replaced with actual LLM integration",
+        "testStrategy": "Test the API route with various input payloads including valid and invalid JSON. Verify that the response structure matches what the frontend expects. Check error handling for malformed requests. Use tools like Postman or curl to test the endpoint directly.",
+        "priority": "medium",
+        "dependencies": [
+          6
+        ],
+        "status": "done",
+        "subtasks": []
+      },
+      {
+        "id": 8,
+        "title": "Connect Frontend to Mock API",
+        "description": "Integrate the frontend components with the mock API route to ensure proper data flow and UI updates.",
+        "details": "1. Create a service function to call the /api/analyze endpoint\n2. Implement fetch or axios to make the API request\n3. Update the client-side state management to call this service when the 'Analyze Transcript' button is clicked\n4. Handle loading states during API calls\n5. Process the API response and update the state with the analysis results\n6. Implement error handling for failed requests\n7. Update the UI to display the mock analysis data\n8. Test the complete flow from input to display",
+        "testStrategy": "Test the complete user flow from pasting a transcript to viewing the analysis. Verify loading states are correctly displayed during API calls. Test error scenarios by simulating network failures. Ensure the UI correctly updates with the received data.",
+        "priority": "medium",
+        "dependencies": [
+          6,
+          7
+        ],
+        "status": "done",
+        "subtasks": []
+      },
+      {
+        "id": 9,
+        "title": "Integrate LLM with API Route",
+        "description": "Replace the mock API implementation with actual LLM integration using OpenAI or another provider to analyze the transcript.",
+        "details": "1. Install the OpenAI SDK or another appropriate LLM provider SDK\n2. Set up environment variables for API keys\n3. Create a robust prompt template that instructs the LLM to analyze the transcript and return structured data\n4. Implement the API call to the LLM service\n5. Process the transcript to extract sections before sending to the LLM\n6. Parse the LLM response and ensure it matches the expected format\n7. Implement retry logic and error handling for LLM API failures\n8. Add validation to ensure the returned data is properly structured\n9. Consider implementing JSON mode if available in the chosen LLM\n10. Add logging for debugging purposes",
+        "testStrategy": "Test with various transcript formats to ensure robust parsing. Verify that the LLM returns properly structured data. Test error handling by simulating API failures. Check performance with transcripts of different lengths. Ensure API keys are properly secured and not exposed to clients.",
+        "priority": "high",
+        "dependencies": [
+          7,
+          8
+        ],
+        "status": "done",
+        "subtasks": [
+          {
+            "id": 1,
+            "title": "SDK Installation and Configuration",
+            "description": "Set up the LLM provider's SDK and configure authentication credentials",
+            "dependencies": [],
+            "details": "Install the appropriate SDK for your chosen LLM provider (OpenAI, Anthropic, etc.). Configure environment variables for API keys. Implement secure credential management. Test the connection to ensure proper authentication.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 2,
+            "title": "Prompt Engineering Framework",
+            "description": "Develop a structured approach to creating effective prompts",
+            "dependencies": [
+              1
+            ],
+            "details": "Research prompt engineering best practices. Create templates for different use cases. Implement prompt versioning. Develop a testing framework to evaluate prompt effectiveness. Document guidelines for prompt creation.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 3,
+            "title": "API Communication Layer",
+            "description": "Build robust communication with the LLM API",
+            "dependencies": [
+              1
+            ],
+            "details": "Implement request formatting according to API specifications. Set up appropriate timeouts and connection pooling. Create a retry mechanism for failed requests. Implement rate limiting to avoid API throttling. Add logging for all API interactions.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 4,
+            "title": "Response Parsing System",
+            "description": "Create a system to consistently parse and validate LLM responses",
+            "dependencies": [
+              3
+            ],
+            "details": "Develop JSON schema validation for structured responses. Implement error handling for malformed responses. Create fallback mechanisms for unexpected response formats. Build type conversion utilities for different response types.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 5,
+            "title": "Error Handling Framework",
+            "description": "Implement comprehensive error handling for all LLM interactions",
+            "dependencies": [
+              3,
+              4
+            ],
+            "details": "Create custom error types for different failure scenarios. Implement graceful degradation strategies. Set up monitoring and alerting for critical errors. Develop user-friendly error messages. Create documentation for troubleshooting common issues.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 6,
+            "title": "Performance Optimization",
+            "description": "Optimize the LLM integration for speed and cost efficiency",
+            "dependencies": [
+              3,
+              4
+            ],
+            "details": "Implement response caching for identical requests. Optimize token usage in prompts. Set up batch processing for multiple requests. Monitor and optimize latency. Implement cost tracking and budgeting features.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 7,
+            "title": "Security Implementation",
+            "description": "Ensure the LLM integration follows security best practices",
+            "dependencies": [
+              1,
+              3
+            ],
+            "details": "Implement input sanitization to prevent prompt injection. Set up data redaction for sensitive information. Create access controls for LLM features. Implement audit logging for all LLM interactions. Conduct security testing and vulnerability assessment.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 8,
+            "title": "Testing and Documentation",
+            "description": "Create comprehensive tests and documentation for the LLM integration",
+            "dependencies": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7
+            ],
+            "details": "Develop unit tests for all components. Create integration tests for end-to-end workflows. Implement automated testing for prompt effectiveness. Write developer documentation with examples. Create user guides for prompt creation and troubleshooting.",
+            "status": "pending",
+            "testStrategy": ""
+          }
+        ]
+      },
+      {
+        "id": 10,
+        "title": "Implement End-to-End Testing and Refinement",
+        "description": "Conduct comprehensive testing of the entire application flow, refine the UI/UX based on feedback, and optimize the LLM prompt for better analysis quality.",
+        "details": "1. Create end-to-end tests covering the complete user flow\n2. Test with various real-world transcript examples\n3. Refine the LLM prompt based on analysis quality\n4. Add few-shot examples to the prompt to improve output consistency\n5. Optimize the UI for better user experience\n6. Implement any missing error states or edge cases\n7. Add loading indicators and transitions between states\n8. Conduct accessibility testing and make necessary improvements\n9. Optimize performance, especially for larger transcripts\n10. Document known limitations and future improvements",
+        "testStrategy": "Conduct user testing sessions to gather feedback. Use automated end-to-end testing tools like Cypress or Playwright. Test with a diverse set of transcript examples to ensure robustness. Verify accessibility using tools like axe or Lighthouse. Measure and optimize performance metrics.",
+        "priority": "medium",
+        "dependencies": [
+          9
+        ],
+        "status": "pending",
+        "subtasks": []
+      }
+    ],
+    "metadata": {
+      "created": "2025-06-30T20:26:15.256Z",
+      "updated": "2025-06-30T20:26:15.256Z",
+      "description": "Tasks for master context"
+    }
+  }
+}

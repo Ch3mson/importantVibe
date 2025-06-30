@@ -1,0 +1,70 @@
+# PRD: Vibe - AI Interview Transcript Analyzer
+
+## 1. Overview
+
+Vibe is a web application designed for software engineers and hiring managers to rapidly analyze technical interview transcripts. The tool allows a user to paste a structured JSON transcript and, using an LLM, generates a section-by-section analysis. This includes a summary, highlights (strengths), lowlights (weaknesses), and a list of key named entities (e.g., technologies mentioned). Vibe solves the problem of time-consuming manual transcript review by providing immediate, actionable insights.
+
+## 2. Core Features
+
+*   **Transcript Input:** A simple textarea for users to paste pre-formatted JSON interview transcripts.
+*   **LLM-Powered Analysis:** On submission, the application will send the transcript to a backend API that uses an LLM (e.g., OpenAI) to generate an analysis for each section of the interview.
+*   **Paginated Timeline View:** The results will be displayed in a clean, paginated format, allowing the user to navigate through the different sections of the interview (e.g., "Introduction," "Technical Discussion").
+*   **Structured Analysis Display:** For each interview section, the UI will clearly present:
+    *   **Summary:** A concise overview of the conversation in that section.
+    *   **Highlights:** Key strengths and positive signals from the candidate.
+    *   **Lowlights:** Potential weaknesses, mistakes, or areas of concern.
+    *   **Key Named Entities:** A list of extracted keywords, focusing on technologies, skills, and important concepts (e.g., "React", "Next.js", "RTK Query", "CSS-in-JS").
+*   **Local State Management:** The application will manage all data, including the input transcript and the returned analysis, in local client-side state. No database or user accounts are required for the MVP.
+
+## 3. User Experience (UX)
+
+*   **User Persona:** A software engineer, tech lead, or hiring manager who has just conducted a technical interview and wants to quickly distill the key takeaways.
+*   **User Flow:**
+    1.  The user lands on the single-page application.
+    2.  They are presented with a large input field and an "Analyze Transcript" button.
+    3.  The user copies the JSON transcript content (like in `mockTranscript.json`) and pastes it into the input field.
+    4.  Upon clicking the button, a loading indicator appears.
+    5.  Once the analysis is complete, the results are displayed in a paginated view. The user can click "Next" or "Previous" to cycle through the analyzed sections of the interview.
+    6.  The main view will show the analysis (summary, highlights, etc.), and a side panel could show the raw dialogue for the corresponding section for easy reference.
+
+## 4. Technical Architecture
+
+*   **Framework:** Next.js (Already initialized)
+*   **Language:** TypeScript
+*   **Styling:** We will use `shadcn/ui` for our component library, which is built on top of Tailwind CSS. This will give us a set of beautifully designed, accessible, and customizable components to accelerate UI development.
+*   **State Management:** React's built-in `useState`, `useReducer`, or Context API for managing application state.
+*   **API Layer:** A Next.js API route (`/api/analyze`) will be created to securely handle communication with the LLM. This prevents exposing API keys on the client-side.
+    *   **Request:** The frontend sends the raw JSON transcript text to the API route.
+    *   **Process:** The API route constructs a detailed prompt, sends the transcript to the LLM, and parses the structured JSON response.
+    *   **Response:** The API route returns the structured analysis to the frontend.
+
+## 5. Development Roadmap (MVP)
+
+1.  **Phase 1: UI Foundation**
+    *   Build the main page layout with `Header`, `Footer`, and `Main` content areas.
+    *   Create the `TranscriptInput` component (a textarea and a button).
+    *   Create the `AnalysisDisplay` component to structure the output with placeholders for summary, highlights, etc.
+    *   Implement a `Pagination` component.
+
+2.  **Phase 2: Client-Side Logic & State**
+    *   Implement state management to hold the transcript string, loading status, analysis results, and current page index.
+    *   Create the function to handle the "Analyze" button click, which will set loading state and prepare to call the API.
+
+3.  **Phase 3: Backend API Route**
+    *   Create the Next.js API route `/api/analyze`.
+    *   Initially, make the API route return a hardcoded, mock analysis object that matches the final expected structure.
+    *   Connect the frontend to this mock API to ensure the data flow works correctly.
+
+4.  **Phase 4: LLM Integration**
+    *   Integrate the chosen LLM's SDK into the `/api/analyze` route.
+    *   Engineer a robust prompt that instructs the LLM to read the transcript and return the desired `summary`, `highlights`, `lowlights`, and `keyNamedEntity` for each section in a structured JSON format.
+    *   Replace the mock response with the live LLM response.
+
+## 6. Risks and Mitigations
+
+*   **Risk 1:** The LLM output may not be consistently in the correct JSON format.
+    *   **Mitigation:** Use advanced prompting techniques and leverage the "JSON mode" offered by many modern LLMs. Implement server-side validation and retry logic.
+*   **Risk 2:** The quality of the analysis (summaries, highlights) might be poor.
+    *   **Mitigation:** Iterate on the prompt design. Provide few-shot examples within the prompt to guide the model's output.
+*   **Risk 3:** Processing very long transcripts could be slow or exceed the LLM's context window.
+    *   **Mitigation (MVP):** For now, we will assume transcripts are of a reasonable length. For the future, we can design the API to process one section at a time.
